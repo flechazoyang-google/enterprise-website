@@ -1,0 +1,147 @@
+/* 产品页面样式 */
+.products-page {
+  padding: 60px 0;
+}
+
+/* 筛选栏样式 */
+.product-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  padding: 8px 16px;
+  background-color: var(--light-color);
+  border-radius: 20px;
+  transition: var(--transition);
+}
+
+.filter-tab.active, .filter-tab:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* 搜索框样式 */
+.product-search {
+  position: relative;
+  width: 300px;
+}
+
+#product-search-input {
+  width: 100%;
+  padding: 10px 16px;
+  padding-right: 40px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  transition: var(--transition);
+}
+
+#product-search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.1);
+}
+
+.search-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: var(--secondary-color);
+}
+
+/* 产品网格样式 */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.product-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-card-img {
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.product-card:hover .product-card-img img {
+  transform: scale(1.05);
+}
+
+.product-card-content {
+  padding: 20px;
+}
+
+.product-card-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.product-card-desc {
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+  height: 60px;
+  overflow: hidden;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  .product-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .product-search {
+    width: 100%;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 375px) {
+  .products-page {
+    padding: 40px 0;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}

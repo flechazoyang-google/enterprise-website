@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新闻动态 - 智维互联科技有限公司</title>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/base.css">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/news.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">智维互联科技有限公司</a>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html">首页</a></li>
+        <li class="nav-item"><a href="about.html">关于我们</a></li>
+        <li class="nav-item"><a href="products.html">产品服务</a></li>
+        <li class="nav-item"><a href="news.html">新闻动态</a></li>
+        <li class="nav-item"><a href="contact.html">联系我们</a></li>
+      </ul>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 新闻列表页 -->
+  <section class="news-page">
+    <div class="container">
+      <h2>新闻动态</h2>
+      
+      <!-- 新闻筛选 -->
+      <div class="news-filter">
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-category="all">全部新闻</button>
+          <button class="filter-tab" data-category="企业动态">企业动态</button>
+          <button class="filter-tab" data-category="产品动态">产品动态</button>
+          <button class="filter-tab" data-category="合作动态">合作动态</button>
+          <button class="filter-tab" data-category="行业动态">行业动态</button>
+        </div>
+      </div>
+      
+      <!-- 新闻列表（JS动态渲染） -->
+      <div class="news-list">
+        <div class="loading"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-column">
+        <h3>关于我们</h3>
+        <ul>
+          <li><a href="about.html">企业简介</a></li>
+          <li><a href="about.html#timeline">发展历程</a></li>
+          <li><a href="about.html#team">核心团队</a></li>
+          <li><a href="about.html#culture">企业文化</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>产品服务</h3>
+        <ul>
+          <li><a href="products.html?category=管理软件">管理软件</a></li>
+          <li><a href="products.html?category=数据服务">数据服务</a></li>
+          <li><a href="products.html?category=云服务">云服务</a></li>
+          <li><a href="products.html?category=定制服务">定制服务</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>新闻动态</h3>
+        <ul>
+          <li><a href="news.html?category=企业动态">企业动态</a></li>
+          <li><a href="news.html?category=产品动态">产品动态</a></li>
+          <li><a href="news.html?category=合作动态">合作动态</a></li>
+          <li><a href="news.html?category=行业动态">行业动态</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>联系我们</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> 江西省南昌市新建区玉屏西大街665号 </p>
+          <p><i class="fas fa-phone"></i> 15970527644 </p>
+          <p><i class="fas fa-envelope"></i> 3134825482@qq.com </p>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2025 flechazo . 保留所有权利.</p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JS文件 -->
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/nav.js"></script>
+  <script>
+    let allNews = []; // 存储所有新闻数据
+
+    // 页面加载完成后渲染新闻列表
+    document.addEventListener('DOMContentLoaded', async () => {
+      await renderNewsList();
+      bindNewsFilterEvents();
+    });
+
+    /**
+     * 渲染新闻列表
+     * @param {Array} news - 待渲染的新闻数据（默认全部）
+     */
+    async function renderNewsList(news = []) {
+      const newsList = document.querySelector('.news-list');
+      newsList.innerHTML = '<div class="loading"></div>';
+      
+      try {
+        // 首次加载时从接口获取所有新闻
+        if (news.length === 0 && allNews.length === 0) {
+          const res = await request('/news');
+          if (res.code === 200) {
+            allNews = res.data; // 按日期降序排列（后端已处理）
+          } else {
+            newsList.innerHTML = `<p class="error">新闻加载失败：${res.msg}</p>`;
+            return;
+          }
+        }
+        
+        // 确定最终要渲染的新闻
+        const renderNews = news.length > 0 ? news : allNews;
+        
+        if (renderNews.length === 0) {
+          newsList.innerHTML = `<p class="error">暂无匹配的新闻</p>`;
+          return;
+        }
+        
+        let html = '';
+        renderNews.forEach(item => {
+          // 格式化日期（YYYY-MM-DD → YYYY年MM月DD日）
+          const formatDate = item.date.replace(/-/g, '年') + '日';
+          
+          html += `
+            <div class="news-item">
+              <div class="news-date">
+                <span class="date-day">${item.date.split('-')[2]}</span>
+                <span class="date-month">${item.date.split('-')[1]}月</span>
+                <span class="date-year">${item.date.split('-')[0]}</span>
+              </div>
+              <div class="news-content">
+                <h3 class="news-title">
+                  <a href="news-detail.html?id=${item.id}">${item.title}</a>
+                </h3>
+                <div class="news-meta">
+                  <span class="news-category">${item.category}</span>
+                </div>
+                <p class="news-summary">${item.summary}</p>
+                <a href="news-detail.html?id=${item.id}" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          `;
+        });
+        
+        newsList.innerHTML = html;
+        
+        // 添加入场动画
+        scrollAnimation('.news-item', 'animate');
+        
+        // 同步URL参数（分类筛选时）
+        const activeTab = document.querySelector('.filter-tab.active');
+        if (activeTab.dataset.category !== 'all') {
+          const url = new URL(window.location);
+          url.searchParams.set('category', activeTab.dataset.category);
+          window.history.pushState({}, '', url);
+        } else {
+          // 全部新闻时移除分类参数
+          const url = new URL(window.location);
+          url.searchParams.delete('category');
+          window.history.pushState({}, '', url);
+        }
+      } catch (error) {
+        newsList.innerHTML = `<p class="error">新闻加载失败，请刷新重试</p>`;
+      }
+    }
+
+    /**
+     * 绑定新闻筛选事件（分类标签）
+     */
+    function bindNewsFilterEvents() {
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // 更新标签激活状态
+          filterTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          const category = tab.dataset.category;
+          if (category === 'all') {
+            // 全部新闻
+            renderNewsList();
+          } else {
+            // 筛选对应分类的新闻
+            const filteredNews = allNews.filter(news => news.category === category);
+            renderNewsList(filteredNews);
+          }
+        });
+      });
+      
+      // 初始化时根据URL参数激活对应分类
+      const urlCategory = getUrlParam('category');
+      if (urlCategory) {
+        const targetTab = document.querySelector(`.filter-tab[data-category="${urlCategory}"]`);
+        if (targetTab) {
+          targetTab.click(); // 触发点击事件，自动筛选
+        }
+      }
+    }
+  </script>
+</body>
+</html>

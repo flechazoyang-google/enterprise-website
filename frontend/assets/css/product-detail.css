@@ -1,0 +1,138 @@
+/* 产品详情页样式 */
+.product-detail-page {
+  padding: 60px 0;
+}
+
+/* 面包屑导航 */
+.breadcrumbs {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin-bottom: 30px;
+}
+
+.breadcrumbs a {
+  color: var(--secondary-color);
+  margin: 0 8px;
+}
+
+.breadcrumbs a:hover {
+  color: var(--primary-color);
+}
+
+.breadcrumbs .current {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* 详情内容 */
+.detail-content {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 40px;
+}
+
+.detail-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.product-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--dark-color);
+}
+
+.product-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: var(--light-color);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+/* 详情主体 */
+.detail-body {
+  display: flex;
+  gap: 40px;
+}
+
+.product-img {
+  flex: 1;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.product-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.product-detail-info {
+  flex: 1.5;
+}
+
+.product-brief {
+  color: var(--secondary-color);
+  line-height: 1.8;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+}
+
+.product-full-detail {
+  color: var(--secondary-color);
+  line-height: 2;
+  margin-bottom: 30px;
+}
+
+.product-full-detail h4 {
+  font-size: 1.2rem;
+  color: var(--dark-color);
+  margin: 20px 0 10px;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  .product-detail-page {
+    padding: 40px 0;
+  }
+
+  .detail-content {
+    padding: 20px;
+  }
+
+  .detail-body {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .product-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .breadcrumbs {
+    font-size: 0.8rem;
+  }
+
+  .product-detail-info {
+    padding: 0;
+  }
+
+  .product-brief {
+    padding: 15px;
+  }
+}
+
+.error {
+  color: var(--danger-color);
+  text-align: center;
+  padding: 40px;
+}

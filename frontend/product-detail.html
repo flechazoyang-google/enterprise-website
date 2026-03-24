@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>产品详情 - 智维互联科技有限公司</title>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/base.css">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/product-detail.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">智维互联科技有限公司</a>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html">首页</a></li>
+        <li class="nav-item"><a href="about.html">关于我们</a></li>
+        <li class="nav-item"><a href="products.html">产品服务</a></li>
+        <li class="nav-item"><a href="news.html">新闻动态</a></li>
+        <li class="nav-item"><a href="contact.html">联系我们</a></li>
+      </ul>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 产品详情 -->
+  <section class="product-detail-page">
+    <div class="container">
+      <!-- 面包屑导航 -->
+      <div class="breadcrumbs">
+        <a href="index.html">首页</a> > 
+        <a href="products.html">产品服务</a> > 
+        <span class="current">产品详情</span>
+      </div>
+
+      <!-- 详情内容（JS动态渲染） -->
+      <div class="detail-content">
+        <div class="loading"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-column">
+        <h3>关于我们</h3>
+        <ul>
+          <li><a href="about.html">企业简介</a></li>
+          <li><a href="about.html#timeline">发展历程</a></li>
+          <li><a href="about.html#team">核心团队</a></li>
+          <li><a href="about.html#culture">企业文化</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>产品服务</h3>
+        <ul>
+          <li><a href="products.html?category=管理软件">管理软件</a></li>
+          <li><a href="products.html?category=数据服务">数据服务</a></li>
+          <li><a href="products.html?category=云服务">云服务</a></li>
+          <li><a href="products.html?category=定制服务">定制服务</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>新闻动态</h3>
+        <ul>
+          <li><a href="news.html?category=企业动态">企业动态</a></li>
+          <li><a href="news.html?category=产品动态">产品动态</a></li>
+          <li><a href="news.html?category=合作动态">合作动态</a></li>
+          <li><a href="news.html?category=行业动态">行业动态</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>联系我们</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> 江西省南昌市新建区玉屏西大街665号 </p>
+          <p><i class="fas fa-phone"></i> 15970527644 </p>
+          <p><i class="fas fa-envelope"></i> 3134825482@qq.com </p>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2025 flechazo . 保留所有权利.</p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JS文件 -->
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/nav.js"></script>
+  <script>
+    // 页面加载完成后渲染产品详情
+    document.addEventListener('DOMContentLoaded', async () => {
+      await renderProductDetail();
+    });
+
+    /**
+     * 渲染产品详情
+     */
+    async function renderProductDetail() {
+      const detailContent = document.querySelector('.detail-content');
+      const productId = getUrlParam('id'); // 获取URL中的产品ID
+
+      // 验证ID合法性
+      if (!productId || isNaN(productId)) {
+        detailContent.innerHTML = `<p class="error">产品ID不合法，请返回产品列表页</p>`;
+        return;
+      }
+
+      try {
+        // 调用后端接口获取产品详情
+        const res = await request(`/products/${productId}`);
+        if (res.code === 200) {
+          const product = res.data;
+          // 渲染详情HTML
+          detailContent.innerHTML = `
+            <div class="detail-header">
+              <h1 class="product-title">${product.name}</h1>
+              <span class="product-category">分类：${product.category}</span>
+            </div>
+            <div class="detail-body">
+              <div class="product-img">
+                <img src="${product.img_url}" alt="${product.name}" loading="lazy">
+              </div>
+              <div class="product-detail-info">
+                <h3>产品简介</h3>
+                <p class="product-brief">${product.desc}</p>
+                <h3>产品详情</h3>
+                <div class="product-full-detail">
+                  ${formatDetailContent(product.detail)} <!-- 格式化详情内容（换行） -->
+                </div>
+                <a href="contact.html" class="btn">咨询合作</a>
+              </div>
+            </div>
+          `;
+        } else if (res.code === 404) {
+          detailContent.innerHTML = `<p class="error">该产品不存在或已下架</p>`;
+        } else {
+          detailContent.innerHTML = `<p class="error">产品详情加载失败：${res.msg}</p>`;
+        }
+      } catch (error) {
+        detailContent.innerHTML = `<p class="error">产品详情加载失败，请刷新重试</p>`;
+      }
+    }
+
+    /**
+     * 格式化详情内容（将换行符转为<br>）
+     */
+    function formatDetailContent(content) {
+      return content.replace(/\n/g, '<br>');
+    }
+  </script>
+</body>
+</html>

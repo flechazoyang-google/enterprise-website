@@ -1,0 +1,193 @@
+/* 基础样式与变量定义 */
+:root {
+  --primary-color: #2c6ecb; /* 主色调-蓝色 */
+  --primary-light: #4a89dc;
+  --primary-dark: #1e50a2;
+  --secondary-color: #656d78; /* 次要文本色 */
+  --dark-color: #2f3540; /* 深色背景 */
+  --light-color: #f5f7fa; /* 浅色背景 */
+  --danger-color: #e74c3c; /* 警告色 */
+  --success-color: #27ae60; /* 成功色 */
+  --white-color: #ffffff;
+  --border-radius: 8px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --transition: all 0.3s ease;
+  --font-main: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--dark-color);
+  background-color: var(--light-color);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--dark-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 40px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+}
+
+a {
+  color: var(--dark-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(44, 110, 203, 0.3);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.loading {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  z-index: 998;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.breadcrumbs {
+  margin: 20px 0 30px;
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+}
+
+.breadcrumbs a {
+  color: var(--secondary-color);
+}
+
+.breadcrumbs a:hover {
+  color: var(--primary-color);
+}
+
+.breadcrumbs .current {
+  color: var(--primary-color);
+}
+
+/* 响应式基础设置 */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.6rem;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}

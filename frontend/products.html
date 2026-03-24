@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智维互联科技有限公司 - 产品服务</title>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/base.css">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/products.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">智维互联科技有限公司</a>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html">首页</a></li>
+        <li class="nav-item"><a href="about.html">关于我们</a></li>
+        <li class="nav-item"><a href="products.html">产品服务</a></li>
+        <li class="nav-item"><a href="news.html">新闻动态</a></li>
+        <li class="nav-item"><a href="contact.html">联系我们</a></li>
+      </ul>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 产品列表 -->
+  <section class="products-page">
+    <div class="container">
+      <h2>产品服务</h2>
+      
+      <!-- 产品筛选 -->
+      <div class="product-filter">
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-category="all">全部产品</button>
+          <button class="filter-tab" data-category="管理软件">管理软件</button>
+          <button class="filter-tab" data-category="数据服务">数据服务</button>
+          <button class="filter-tab" data-category="云服务">云服务</button>
+          <button class="filter-tab" data-category="硬件产品">硬件产品</button>
+          <button class="filter-tab" data-category="技术服务">技术服务</button>
+          <button class="filter-tab" data-category="定制服务">定制服务</button>
+        </div>
+        
+        <!-- 产品搜索（扩展功能） -->
+        <div class="product-search">
+          <input type="text" placeholder="搜索产品名称..." id="product-search-input">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      
+      <!-- 产品列表 -->
+      <div class="products-grid">
+        <!-- 产品由JS动态渲染 -->
+        <div class="loading"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-column">
+        <h3>关于我们</h3>
+        <ul>
+          <li><a href="about.html">企业简介</a></li>
+          <li><a href="about.html#timeline">发展历程</a></li>
+          <li><a href="about.html#team">核心团队</a></li>
+          <li><a href="about.html#culture">企业文化</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>产品服务</h3>
+        <ul>
+          <li><a href="products.html?category=管理软件">管理软件</a></li>
+          <li><a href="products.html?category=数据服务">数据服务</a></li>
+          <li><a href="products.html?category=云服务">云服务</a></li>
+          <li><a href="products.html?category=定制服务">定制服务</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>新闻动态</h3>
+        <ul>
+          <li><a href="news.html?category=企业动态">企业动态</a></li>
+          <li><a href="news.html?category=产品动态">产品动态</a></li>
+          <li><a href="news.html?category=合作动态">合作动态</a></li>
+          <li><a href="news.html?category=行业动态">行业动态</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>联系我们</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> 江西省南昌市新建区玉屏西大街665号 </p>
+          <p><i class="fas fa-phone"></i> 15970527644 </p>
+          <p><i class="fas fa-envelope"></i> 3134825482@qq.com </p>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2025 flechazo . 保留所有权利.</p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JS文件 -->
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/nav.js"></script>
+  <script src="./assets/js/filter.js"></script>
+  <script>
+    // 页面加载完成后渲染产品列表
+    document.addEventListener('DOMContentLoaded', async () => {
+      await renderProductList();
+      bindProductFilterEvents();
+      bindProductSearchEvent();
+    });
+  </script>
+</body>
+</html>

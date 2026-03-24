@@ -1,0 +1,291 @@
+/* 关于我们页样式 */
+.about-banner {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.about-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-page section {
+  padding: 60px 0;
+}
+
+/* 企业简介 */
+.intro-content {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 40px;
+}
+
+.intro-card {
+  line-height: 2;
+  color: var(--secondary-color);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.intro-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 企业文化 */
+.culture-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.culture-card {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.culture-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.culture-icon {
+  margin-bottom: 20px;
+}
+
+.culture-card h3 {
+  margin-bottom: 15px;
+  color: var(--dark-color);
+}
+
+.culture-card p {
+  color: var(--secondary-color);
+  line-height: 1.8;
+}
+
+/* 发展历程（时间轴） */
+.timeline {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* 时间轴竖线 */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: var(--primary-color);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+  border-radius: 3px;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.timeline-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 时间轴点 */
+.timeline-dot {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 4px solid var(--primary-color);
+  border-radius: 50%;
+  top: 20px;
+  z-index: 1;
+}
+
+/* 左侧时间轴 */
+.timeline-left {
+  left: 0;
+}
+
+.timeline-left .timeline-dot {
+  right: -13px;
+}
+
+/* 右侧时间轴 */
+.timeline-right {
+  left: 50%;
+}
+
+.timeline-right .timeline-dot {
+  left: -13px;
+}
+
+/* 时间轴内容卡片 */
+.timeline-content-card {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.timeline-year {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.timeline-event {
+  color: var(--secondary-color);
+  line-height: 1.8;
+}
+
+/* 核心团队 */
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.team-card {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.team-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* 仅修改头像部分 */
+.team-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 30px auto 20px;
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-avatar img {
+  transform: scale(1.1);
+}
+
+.team-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.team-name {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.team-position {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.team-intro {
+  color: var(--secondary-color);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+/* 响应式适配 */
+@media (max-width: 1200px) {
+  .culture-list, .team-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page section {
+    padding: 40px 0;
+  }
+
+  .intro-content {
+    padding: 20px;
+  }
+
+  .culture-list, .team-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* 时间轴响应式（垂直布局） */
+  .timeline::after {
+    left: 31px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .timeline-left, .timeline-right {
+    left: 0;
+  }
+
+  .timeline-left .timeline-dot, .timeline-right .timeline-dot {
+    left: 18px;
+    right: auto;
+  }
+}
+
+@media (max-width: 375px) {
+  .about-banner {
+    height: 200px;
+  }
+
+  .timeline-content-card {
+    padding: 15px;
+  }
+
+  .team-avatar {
+    height: 180px;
+  }
+}
+
+.error {
+  color: var(--danger-color);
+  text-align: center;
+  padding: 20px;
+}

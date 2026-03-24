@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们 - 智维互联科技有限公司</title>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/base.css">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/about.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">智维互联科技有限公司</a>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html">首页</a></li>
+        <li class="nav-item"><a href="about.html" class="active">关于我们</a></li>
+        <li class="nav-item"><a href="products.html">产品服务</a></li>
+        <li class="nav-item"><a href="news.html">新闻动态</a></li>
+        <li class="nav-item"><a href="contact.html">联系我们</a></li>
+      </ul>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 关于我们页面 -->
+  <section class="about-page">
+    <!-- banner区域 -->
+    <div class="about-banner">
+      <img src="https://picsum.photos/id/180/1920/300" alt="关于我们" loading="lazy">
+    </div>
+
+    <div class="container">
+      <!-- 企业简介 -->
+      <section class="about-intro">
+        <h2>企业简介</h2>
+        <div class="intro-content">
+          <div class="loading"></div>
+        </div>
+      </section>
+
+      <!-- 企业文化 -->
+      <section class="about-culture" id="culture">
+        <h2>企业文化</h2>
+        <div class="culture-content">
+          <div class="loading"></div>
+        </div>
+      </section>
+
+      <!-- 发展历程 -->
+      <section class="about-timeline" id="timeline">
+        <h2>发展历程</h2>
+        <div class="timeline-content">
+          <div class="loading"></div>
+        </div>
+      </section>
+
+      <!-- 核心团队 -->
+      <section class="about-team" id="team">
+        <h2>核心团队</h2>
+        <div class="team-content">
+          <div class="loading"></div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-column">
+        <h3>关于我们</h3>
+        <ul>
+          <li><a href="about.html">企业简介</a></li>
+          <li><a href="about.html#timeline">发展历程</a></li>
+          <li><a href="about.html#team">核心团队</a></li>
+          <li><a href="about.html#culture">企业文化</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>产品服务</h3>
+        <ul>
+          <li><a href="products.html?category=管理软件">管理软件</a></li>
+          <li><a href="products.html?category=数据服务">数据服务</a></li>
+          <li><a href="products.html?category=云服务">云服务</a></li>
+          <li><a href="products.html?category=定制服务">定制服务</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>新闻动态</h3>
+        <ul>
+          <li><a href="news.html?category=企业动态">企业动态</a></li>
+          <li><a href="news.html?category=产品动态">产品动态</a></li>
+          <li><a href="news.html?category=合作动态">合作动态</a></li>
+          <li><a href="news.html?category=行业动态">行业动态</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>联系我们</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> 江西省南昌市新建区玉屏西大街665号 </p>
+          <p><i class="fas fa-phone"></i> 15970527644 </p>
+          <p><i class="fas fa-envelope"></i> 3134825482@qq.com </p>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2025 flechazo . 保留所有权利.</p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JS文件 -->
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/nav.js"></script>
+  <script>
+    // 页面加载完成后渲染所有内容
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Promise.all([
+        renderIntro(),       // 企业简介
+        renderCulture(),     // 企业文化
+        renderTimeline(),    // 发展历程
+        renderTeam()         // 核心团队
+      ]);
+      // 滚动动画
+      scrollAnimation('.intro-card', 'animate');
+      scrollAnimation('.culture-card', 'animate');
+      scrollAnimation('.timeline-item', 'animate');
+      scrollAnimation('.team-card', 'animate');
+      
+      // 初始化回到顶部按钮
+      initBackToTop();
+    });
+
+    // 初始化回到顶部功能
+    function initBackToTop() {
+      const backToTop = document.querySelector('.back-to-top');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add('show');
+        } else {
+          backToTop.classList.remove('show');
+        }
+      });
+      
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    /**
+     * 渲染企业简介
+     */
+    async function renderIntro() {
+      const introContent = document.querySelector('.intro-content');
+      try {
+        const res = await request('/company/intro');
+        if (res.code === 200) {
+          const intro = res.data.intro;
+          introContent.innerHTML = `
+            <div class="intro-card">
+              <p>${intro.replace(/\n/g, '<br>')}</p>
+            </div>
+          `;
+        } else {
+          introContent.innerHTML = `<p class="error">企业简介加载失败：${res.msg}</p>`;
+        }
+      } catch (error) {
+        introContent.innerHTML = `<p class="error">企业简介加载失败，请刷新重试</p>`;
+      }
+    }
+
+    /**
+     * 渲染企业文化
+     */
+    async function renderCulture() {
+      const cultureContent = document.querySelector('.culture-content');
+      try {
+        const res = await request('/company/culture');
+        if (res.code === 200) {
+          const culture = res.data.culture;
+          // 拆分企业文化为核心价值观、使命、愿景（按换行拆分）
+          const [values, mission, vision] = culture.split('；').map(item => item.trim());
+          
+          cultureContent.innerHTML = `
+            <div class="culture-list">
+              <div class="culture-card">
+                <div class="culture-icon">
+                  <i class="fas fa-heart" style="color: var(--primary-color); font-size: 2rem;"></i>
+                </div>
+                <h3>核心价值观</h3>
+                <p>${values || '诚信、创新、协作、共赢'}</p>
+              </div>
+              <div class="culture-card">
+                <div class="culture-icon">
+                  <i class="fas fa-bullseye" style="color: var(--primary-color); font-size: 2rem;"></i>
+                </div>
+                <h3>企业使命</h3>
+                <p>${mission || '用科技赋能行业，创造价值'}</p>
+              </div>
+              <div class="culture-card">
+                <div class="culture-icon">
+                  <i class="fas fa-rocket" style="color: var(--primary-color); font-size: 2rem;"></i>
+                </div>
+                <h3>企业愿景</h3>
+                <p>${vision || '成为行业领先的科技服务提供商'}</p>
+              </div>
+            </div>
+          `;
+        } else {
+          cultureContent.innerHTML = `<p class="error">企业文化加载失败：${res.msg}</p>`;
+        }
+      } catch (error) {
+        cultureContent.innerHTML = `<p class="error">企业文化加载失败，请刷新重试</p>`;
+      }
+    }
+
+    /**
+     * 渲染发展历程（时间轴）
+     */
+    async function renderTimeline() {
+      const timelineContent = document.querySelector('.timeline-content');
+      try {
+        const res = await request('/timeline');
+        if (res.code === 200) {
+          const timeline = res.data;
+          let html = `<div class="timeline">`;
+          
+          timeline.forEach((item, index) => {
+            // 偶数年份在左，奇数在右（交替布局）
+            const isLeft = index % 2 === 0;
+            html += `
+              <div class="timeline-item ${isLeft ? 'timeline-left' : 'timeline-right'}">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-card">
+                  <div class="timeline-year">${item.year}</div>
+                  <div class="timeline-event">${item.event}</div>
+                </div>
+              </div>
+            `;
+          });
+          
+          html += `</div>`;
+          timelineContent.innerHTML = html;
+        } else {
+          timelineContent.innerHTML = `<p class="error">发展历程加载失败：${res.msg}</p>`;
+        }
+      } catch (error) {
+        timelineContent.innerHTML = `<p class="error">发展历程加载失败，请刷新重试</p>`;
+      }
+    }
+
+    /**
+     * 渲染核心团队
+     */
+    async function renderTeam() {
+      const teamContent = document.querySelector('.team-content');
+      try {
+        const res = await request('/team');
+        if (res.code === 200) {
+          const team = res.data;
+          let html = `<div class="team-list">`;
+          
+          team.forEach(member => {
+            html += `
+              <div class="team-card">
+                <div class="team-avatar">
+                  <img src="${member.avatar}" alt="${member.name}" loading="lazy">
+                </div>
+                <div class="team-info">
+                  <h3 class="team-name">${member.name}</h3>
+                  <p class="team-position">${member.position}</p>
+                  <p class="team-intro">${member.intro}</p>
+                </div>
+              </div>
+            `;
+          });
+          
+          html += `</div>`;
+          teamContent.innerHTML = html;
+        } else {
+          teamContent.innerHTML = `<p class="error">核心团队加载失败：${res.msg}</p>`;
+        }
+      } catch (error) {
+        teamContent.innerHTML = `<p class="error">核心团队加载失败，请刷新重试</p>`;
+      }
+    }
+
+    /**
+     * 滚动动画
+     */
+    function scrollAnimation(selector, className) {
+      const elements = document.querySelectorAll(selector);
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(className);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      elements.forEach(element => {
+        observer.observe(element);
+      });
+    }
+  </script>
+</body>
+</html>

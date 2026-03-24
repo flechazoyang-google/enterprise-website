@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我们 - 智维互联科技有限公司</title>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/base.css">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/contact.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">智维互联科技有限公司</a>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html">首页</a></li>
+        <li class="nav-item"><a href="about.html">关于我们</a></li>
+        <li class="nav-item"><a href="products.html">产品服务</a></li>
+        <li class="nav-item"><a href="news.html">新闻动态</a></li>
+        <li class="nav-item"><a href="contact.html" class="active">联系我们</a></li>
+      </ul>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 联系我们页面 -->
+  <section class="contact-page">
+    <div class="container">
+      <h2>联系我们</h2>
+      
+      <div class="contact-content">
+        <!-- 联系信息 -->
+        <div class="contact-info-card">
+          <h3>联系方式</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i>
+              <div class="info-text">
+                <h4>公司地址</h4>
+                <p id="address">加载中...</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone" style="color: var(--primary-color);"></i>
+              <div class="info-text">
+                <h4>联系电话</h4>
+                <p id="phone">加载中...</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope" style="color: var(--primary-color);"></i>
+              <div class="info-text">
+                <h4>电子邮箱</h4>
+                <p id="email">加载中...</p>
+              </div>
+            </div>
+          </div>
+          
+          <h3 style="margin-top: 30px;">公司地图</h3>
+          <div class="map-container">
+            <img id="map-img" src="https://picsum.photos/id/42/800/400" alt="公司地图" class="map-image">
+          </div>
+          
+          <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        
+        <!-- 联系表单 -->
+        <div class="contact-form-card">
+          <h3>发送消息</h3>
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="name">姓名</label>
+              <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+            </div>
+            <div class="form-group">
+              <label for="phone">电话</label>
+              <input type="tel" id="phone" name="phone" required placeholder="请输入您的电话">
+            </div>
+            <div class="form-group">
+              <label for="email">邮箱</label>
+              <input type="email" id="email" name="email" required placeholder="请输入您的邮箱">
+            </div>
+            <div class="form-group">
+              <label for="subject">主题</label>
+              <select id="subject" name="subject" required>
+                <option value="">请选择咨询主题</option>
+                <option value="product">产品咨询</option>
+                <option value="cooperation">合作洽谈</option>
+                <option value="complaint">投诉建议</option>
+                <option value="other">其他问题</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">留言内容</label>
+              <textarea id="message" name="message" rows="5" required placeholder="请输入您的留言内容"></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn">发送消息</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-column">
+        <h3>关于我们</h3>
+        <ul>
+          <li><a href="about.html">企业简介</a></li>
+          <li><a href="about.html#timeline">发展历程</a></li>
+          <li><a href="about.html#team">核心团队</a></li>
+          <li><a href="about.html#culture">企业文化</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>产品服务</h3>
+        <ul>
+          <li><a href="products.html?category=管理软件">管理软件</a></li>
+          <li><a href="products.html?category=数据服务">数据服务</a></li>
+          <li><a href="products.html?category=云服务">云服务</a></li>
+          <li><a href="products.html?category=定制服务">定制服务</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>新闻动态</h3>
+        <ul>
+          <li><a href="news.html?category=企业动态">企业动态</a></li>
+          <li><a href="news.html?category=产品动态">产品动态</a></li>
+          <li><a href="news.html?category=合作动态">合作动态</a></li>
+          <li><a href="news.html?category=行业动态">行业动态</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>联系我们</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> 江西省南昌市新建区玉屏西大街665号 </p>
+          <p><i class="fas fa-phone"></i> 15970527644 </p>
+          <p><i class="fas fa-envelope"></i> 3134825482@qq.com </p>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2025 flechazo . 保留所有权利.</p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JS文件 -->
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/nav.js"></script>
+  <script src="./assets/js/form.js"></script>
+  <script>
+    // 页面加载完成后执行
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 加载联系信息
+      await loadContactInfo();
+      // 绑定表单事件
+      bindContactFormEvents();
+      // 初始化回到顶部按钮
+      initBackToTop();
+    });
+
+    /**
+     * 初始化回到顶部功能
+     */
+    function initBackToTop() {
+      const backToTop = document.querySelector('.back-to-top');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add('show');
+        } else {
+          backToTop.classList.remove('show');
+        }
+      });
+      
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    /**
+     * 加载企业联系信息
+     */
+    async function loadContactInfo() {
+      try {
+        const res = await request('/contact/info');
+        if (res.code === 200) {
+          const info = res.data;
+          // 渲染联系信息
+          document.getElementById('address').textContent = info.address || '暂无地址信息';
+          document.getElementById('phone').textContent = info.phone || '暂无电话信息';
+          document.getElementById('email').textContent = info.email || '暂无邮箱信息';
+          // 渲染地图
+          const mapImg = document.getElementById('map-img');
+          mapImg.src = info.map_url || 'https://picsum.photos/id/42/800/400';
+          mapImg.alt = '公司位置地图';
+        } else {
+          console.error('加载联系信息失败:', res.msg);
+        }
+      } catch (error) {
+        console.error('加载联系信息出错:', error);
+      }
+    }
+  </script>
+</body>
+</html>

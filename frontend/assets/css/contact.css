@@ -1,0 +1,177 @@
+/* 联系我们页样式 */
+.contact-page {
+  padding: 80px 0;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* 联系信息卡片和表单卡片通用样式 */
+.contact-info-card, .contact-form-card {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  transition: var(--transition);
+}
+
+.contact-info-card:hover, .contact-form-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.contact-info-card h3, .contact-form-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+}
+
+/* 联系信息列表 */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.info-item i {
+  font-size: 1.5rem;
+  margin-top: 3px;
+  min-width: 24px;
+}
+
+.info-text h4 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: var(--dark-color);
+}
+
+.info-text p {
+  color: var(--secondary-color);
+}
+
+/* 地图容器 */
+.map-container {
+  width: 100%;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.map-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.map-image:hover {
+  transform: scale(1.02);
+}
+
+/* 联系表单样式 */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(44, 110, 203, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-submit {
+  margin-top: 10px;
+}
+
+/* 社交链接 */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--light-color);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.social-icon:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* 响应式适配 */
+@media (max-width: 992px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .map-image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 60px 0;
+  }
+  
+  .contact-info-card, .contact-form-card {
+    padding: 20px;
+  }
+  
+  .contact-info-card h3, .contact-form-card h3 {
+    font-size: 1.3rem;
+  }
+}

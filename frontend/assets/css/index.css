@@ -1,0 +1,356 @@
+/* 轮播图样式 */
+.carousel {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-item .carousel-desc {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: #fff;
+}
+
+.carousel-item .carousel-desc h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.carousel-item .carousel-desc p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* 轮播图控制按钮 */
+.carousel-prev, .carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0,0,0,0.3);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+  z-index: 10;
+}
+
+.carousel-prev {
+  left: 20px;
+}
+
+.carousel-next {
+  right: 20px;
+}
+
+.carousel-prev:hover, .carousel-next:hover {
+  background-color: var(--primary-color);
+}
+
+/* 轮播图指示器 */
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.carousel-indicator.active {
+  background-color: #fff;
+  width: 30px;
+  border-radius: 6px;
+}
+
+/* 企业简介样式 */
+.company-intro {
+  padding: 80px 0;
+  background-color: var(--light-color);
+}
+
+.intro-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.intro-text {
+  flex: 1;
+  line-height: 2;
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+}
+
+.intro-text p {
+  margin-bottom: 20px;
+}
+
+.intro-img {
+  flex: 1;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.intro-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.intro-img img:hover {
+  transform: scale(1.05);
+}
+
+/* 核心优势样式 */
+.advantages {
+  padding: 80px 0;
+}
+
+.advantages-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.advantage-item {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.advantage-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease;
+}
+
+.advantage-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.advantage-icon
+
+/**
+ * 热门产品样式
+ */
+.hot-products {
+  padding: 80px 0;
+  background-color: var(--light-color);
+}
+
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.product-item {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.product-img {
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.product-item:hover .product-img img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 20px;
+}
+
+.product-name {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.product-desc {
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.products-more {
+  text-align: center;
+}
+
+/**
+ * 客户案例样式
+ */
+.customer-cases {
+  padding: 80px 0;
+}
+
+.cases-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.case-item {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.case-img {
+  height: 250px;
+  overflow: hidden;
+}
+
+.case-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.case-item:hover .case-img img {
+  transform: scale(1.05);
+}
+
+.case-info {
+  padding: 20px;
+}
+
+.case-name {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.case-desc {
+  color: var(--secondary-color);
+}
+
+/**
+ * 响应式适配
+ */
+@media (max-width: 1200px) {
+  .products-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .intro-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .advantages-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .products-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .cases-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .carousel {
+    height: 300px;
+  }
+  
+  .carousel-item .carousel-desc {
+    padding: 20px;
+  }
+  
+  .carousel-item .carousel-desc h3 {
+    font-size: 1.2rem;
+  }
+  
+  .carousel-item .carousel-desc p {
+    font-size: 0.9rem;
+    display: none;
+  }
+}
+
+@media (max-width: 375px) {
+  .carousel {
+    height: 200px;
+  }
+  
+  .company-intro, .advantages, .hot-products, .customer-cases {
+    padding: 40px 0;
+  }
+}
+
+.error {
+  color: var(--danger-color);
+  text-align: center;
+  padding: 20px;
+}
