@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>新闻详情 - 智维互联科技有限公司</title>
+  <meta name="description" content="智维互联新闻详情：企业动态、产品更新与行业洞察。">
+  <meta name="keywords" content="智维互联,新闻详情,企业动态">
+  <meta property="og:title" content="新闻详情 - 智维互联科技有限公司">
+  <meta property="og:description" content="智维互联新闻详情">
+  <meta property="og:type" content="article">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="./assets/css/base.css">
   <link rel="stylesheet" href="./assets/css/common.css">
@@ -21,7 +26,7 @@
         <li class="nav-item"><a href="news.html">新闻动态</a></li>
         <li class="nav-item"><a href="contact.html">联系我们</a></li>
       </ul>
-      <div class="hamburger">
+      <div class="hamburger" role="button" aria-label="菜单" aria-expanded="false">
         <i class="fas fa-bars"></i>
       </div>
     </div>
@@ -126,17 +131,14 @@
 
           detailContent.innerHTML = `
             <div class="detail-header">
-              <h1 class="news-title">${news.title}</h1>
+              <h1 class="news-title">${escapeHtml(news.title)}</h1>
               <div class="news-meta">
-                <span class="news-date"><i class="fas fa-calendar-alt"></i> ${formatDate}</span>
-                <span class="news-category"><i class="fas fa-tag"></i> ${news.category}</span>
+                <span class="news-date"><i class="fas fa-calendar-alt"></i> ${escapeHtml(formatDate)}</span>
+                <span class="news-category"><i class="fas fa-tag"></i> ${escapeHtml(news.category)}</span>
               </div>
             </div>
             <div class="news-content">
               ${formatDetailContent(news.content)}
-            </div>
-            <div class="news-img">
-              <img src="https://picsum.photos/id/${newsId * 10}/1200/600" alt="${news.title}" loading="lazy">
             </div>
           `;
         } else if (res.code === 404) {

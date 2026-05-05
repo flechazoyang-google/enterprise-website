@@ -214,7 +214,9 @@ CREATE TABLE `news` (
   `summary` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `idx_news_category` (`category`),
+  KEY `idx_news_date` (`date`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -242,7 +244,8 @@ CREATE TABLE `products` (
   `detail` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '产品详情',
   `img_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '产品分类',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `idx_products_category` (`category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

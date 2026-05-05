@@ -3,17 +3,40 @@ const { sendSuccess, sendError } = require('../utils/response');
 
 exports.getProductList = async (req, res) => {
   try {
-    const { category } = req.query;
-    let sql = 'SELECT id, name, `desc`, img_url, category FROM products ORDER BY id ASC';
+    const { category, page, limit } = req.query;
+    let sql = 'SELECT id, name, `desc`, img_url, category FROM products';
+    let countSql = 'SELECT COUNT(*) as total FROM products';
     const params = [];
+    const countParams = [];
 
     if (category && category.trim() !== '') {
-      sql = 'SELECT id, name, `desc`, img_url, category FROM products WHERE category = ? ORDER BY id ASC';
+      sql += ' WHERE category = ?';
+      countSql += ' WHERE category = ?';
       params.push(category);
+      countParams.push(category);
+    }
+
+    sql += ' ORDER BY id ASC';
+
+    if (page && limit) {
+      const offset = (parseInt(page) - 1) * parseInt(limit);
+      sql += ' LIMIT ? OFFSET ?';
+      params.push(parseInt(limit), offset);
     }
 
     const [rows] = await pool.query(sql, params);
-    sendSuccess(res, rows, '产品列表获取成功');
+
+    if (page && limit) {
+      const [countRows] = await pool.query(countSql, countParams);
+      sendSuccess(res, {
+        list: rows,
+        total: countRows[0].total,
+        page: parseInt(page),
+        limit: parseInt(limit)
+      }, '产品列表获取成功');
+    } else {
+      sendSuccess(res, rows, '产品列表获取成功');
+    }
   } catch (error) {
     console.error('获取产品列表失败：', error);
     sendError(res, '产品列表获取失败');

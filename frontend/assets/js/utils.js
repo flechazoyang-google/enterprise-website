@@ -92,9 +92,16 @@ function scrollAnimation(selector, animationClass) {
   elements.forEach(element => observer.observe(element));
 }
 
+function escapeHtml(str) {
+  if (!str) return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 function formatDetailContent(content) {
   if (!content) return '';
   return content.split('\n').map(paragraph => {
-    return paragraph.trim() ? `<p>${paragraph}</p>` : '';
+    return paragraph.trim() ? `<p>${escapeHtml(paragraph)}</p>` : '';
   }).join('');
 }

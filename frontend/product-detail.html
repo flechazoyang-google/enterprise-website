@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>产品详情 - 智维互联科技有限公司</title>
+  <meta name="description" content="智维互联产品详情：功能介绍、技术规格与应用场景。">
+  <meta name="keywords" content="智维互联,产品详情,功能介绍">
+  <meta property="og:title" content="产品详情 - 智维互联科技有限公司">
+  <meta property="og:description" content="智维互联产品功能与详情介绍">
+  <meta property="og:type" content="article">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="./assets/css/base.css">
   <link rel="stylesheet" href="./assets/css/common.css">
@@ -21,7 +26,7 @@
         <li class="nav-item"><a href="news.html">新闻动态</a></li>
         <li class="nav-item"><a href="contact.html">联系我们</a></li>
       </ul>
-      <div class="hamburger">
+      <div class="hamburger" role="button" aria-label="菜单" aria-expanded="false">
         <i class="fas fa-bars"></i>
       </div>
     </div>
@@ -117,16 +122,16 @@
           const product = res.data;
           detailContent.innerHTML = `
             <div class="detail-header">
-              <h1 class="product-title">${product.name}</h1>
-              <span class="product-category">分类：${product.category}</span>
+              <h1 class="product-title">${escapeHtml(product.name)}</h1>
+              <span class="product-category">分类：${escapeHtml(product.category)}</span>
             </div>
             <div class="detail-body">
               <div class="product-img">
-                <img src="${product.img_url}" alt="${product.name}" loading="lazy">
+                <img src="${escapeHtml(product.img_url)}" alt="${escapeHtml(product.name)}" loading="lazy">
               </div>
               <div class="product-detail-info">
                 <h3>产品简介</h3>
-                <p class="product-brief">${product.desc}</p>
+                <p class="product-brief">${escapeHtml(product.desc)}</p>
                 <h3>产品详情</h3>
                 <div class="product-full-detail">
                   ${formatDetailContent(product.detail)}

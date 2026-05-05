@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>关于我们 - 智维互联科技有限公司</title>
+  <meta name="description" content="了解智维互联科技有限公司：企业简介、企业文化、发展历程与核心团队。成立于2018年，服务超过10000家企业客户。">
+  <meta name="keywords" content="智维互联,企业简介,企业文化,发展历程,核心团队">
+  <meta property="og:title" content="关于我们 - 智维互联科技有限公司">
+  <meta property="og:description" content="了解智维互联：企业简介、文化、历程与团队">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="./assets/css/base.css">
   <link rel="stylesheet" href="./assets/css/common.css">
@@ -21,7 +26,7 @@
         <li class="nav-item"><a href="news.html">新闻动态</a></li>
         <li class="nav-item"><a href="contact.html">联系我们</a></li>
       </ul>
-      <div class="hamburger">
+      <div class="hamburger" role="button" aria-label="菜单" aria-expanded="false">
         <i class="fas fa-bars"></i>
       </div>
     </div>
@@ -31,7 +36,7 @@
   <section class="about-page">
     <!-- banner区域 -->
     <div class="about-banner">
-      <img src="https://picsum.photos/id/180/1920/300" alt="关于我们" loading="lazy">
+      <img src="assets/images/carousel/轮播图1.jpg" alt="关于我们">
     </div>
 
     <div class="container">
@@ -107,9 +112,9 @@
           <p><i class="fas fa-envelope"></i> 3134825482@qq.com </p>
         </div>
         <div class="social-links">
-          <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="social-icon" aria-label="微信"><i class="fab fa-weixin"></i></a>
+          <a href="#" class="social-icon" aria-label="微博"><i class="fab fa-weibo"></i></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </div>
@@ -154,7 +159,7 @@
           const intro = res.data.intro;
           introContent.innerHTML = `
             <div class="intro-card">
-              <p>${intro.replace(/\n/g, '<br>')}</p>
+              <p>${escapeHtml(intro).replace(/\n/g, '<br>')}</p>
             </div>
           `;
         } else {
@@ -184,21 +189,21 @@
                   <i class="fas fa-heart" style="color: var(--primary-color); font-size: 2rem;"></i>
                 </div>
                 <h3>核心价值观</h3>
-                <p>${values || '诚信、创新、协作、共赢'}</p>
+                <p>${escapeHtml(values) || '诚信、创新、协作、共赢'}</p>
               </div>
               <div class="culture-card">
                 <div class="culture-icon">
                   <i class="fas fa-bullseye" style="color: var(--primary-color); font-size: 2rem;"></i>
                 </div>
                 <h3>企业使命</h3>
-                <p>${mission || '用科技赋能行业，创造价值'}</p>
+                <p>${escapeHtml(mission) || '用科技赋能行业，创造价值'}</p>
               </div>
               <div class="culture-card">
                 <div class="culture-icon">
                   <i class="fas fa-rocket" style="color: var(--primary-color); font-size: 2rem;"></i>
                 </div>
                 <h3>企业愿景</h3>
-                <p>${vision || '成为行业领先的科技服务提供商'}</p>
+                <p>${escapeHtml(vision) || '成为行业领先的科技服务提供商'}</p>
               </div>
             </div>
           `;
@@ -228,8 +233,8 @@
               <div class="timeline-item ${isLeft ? 'timeline-left' : 'timeline-right'}">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content-card">
-                  <div class="timeline-year">${item.year}</div>
-                  <div class="timeline-event">${item.event}</div>
+                  <div class="timeline-year">${escapeHtml(item.year)}</div>
+                  <div class="timeline-event">${escapeHtml(item.event)}</div>
                 </div>
               </div>
             `;
@@ -260,12 +265,12 @@
             html += `
               <div class="team-card">
                 <div class="team-avatar">
-                  <img src="${member.avatar}" alt="${member.name}" loading="lazy">
+                  <img src="${escapeHtml(member.avatar)}" alt="${escapeHtml(member.name)}" loading="lazy">
                 </div>
                 <div class="team-info">
-                  <h3 class="team-name">${member.name}</h3>
-                  <p class="team-position">${member.position}</p>
-                  <p class="team-intro">${member.intro}</p>
+                  <h3 class="team-name">${escapeHtml(member.name)}</h3>
+                  <p class="team-position">${escapeHtml(member.position)}</p>
+                  <p class="team-intro">${escapeHtml(member.intro)}</p>
                 </div>
               </div>
             `;

@@ -33,11 +33,11 @@ async function renderProductList(products = []) {
       html += `
         <div class="product-card">
           <div class="product-card-img">
-            <img src="${item.img_url}" alt="${item.name}" loading="lazy">
+            <img src="${escapeHtml(item.img_url)}" alt="${escapeHtml(item.name)}" loading="lazy">
           </div>
           <div class="product-card-content">
-            <h3 class="product-card-title"><a href="product-detail.html?id=${item.id}">${item.name}</a></h3>
-            <p class="product-card-desc">${item.desc}</p>
+            <h3 class="product-card-title"><a href="product-detail.html?id=${item.id}">${escapeHtml(item.name)}</a></h3>
+            <p class="product-card-desc">${escapeHtml(item.desc)}</p>
             <a href="product-detail.html?id=${item.id}" class="btn btn-outline">查看详情</a>
           </div>
         </div>

@@ -3,17 +3,40 @@ const { sendSuccess, sendError } = require('../utils/response');
 
 exports.getNewsList = async (req, res) => {
   try {
-    const { category } = req.query;
-    let sql = 'SELECT id, title, date, summary, category FROM news ORDER BY date DESC';
+    const { category, page, limit } = req.query;
+    let sql = 'SELECT id, title, date, summary, category FROM news';
+    let countSql = 'SELECT COUNT(*) as total FROM news';
     const params = [];
+    const countParams = [];
 
     if (category && category.trim() !== '') {
-      sql = 'SELECT id, title, date, summary, category FROM news WHERE category = ? ORDER BY date DESC';
+      sql += ' WHERE category = ?';
+      countSql += ' WHERE category = ?';
       params.push(category);
+      countParams.push(category);
+    }
+
+    sql += ' ORDER BY date DESC';
+
+    if (page && limit) {
+      const offset = (parseInt(page) - 1) * parseInt(limit);
+      sql += ' LIMIT ? OFFSET ?';
+      params.push(parseInt(limit), offset);
     }
 
     const [rows] = await pool.query(sql, params);
-    sendSuccess(res, rows, '新闻列表获取成功');
+
+    if (page && limit) {
+      const [countRows] = await pool.query(countSql, countParams);
+      sendSuccess(res, {
+        list: rows,
+        total: countRows[0].total,
+        page: parseInt(page),
+        limit: parseInt(limit)
+      }, '新闻列表获取成功');
+    } else {
+      sendSuccess(res, rows, '新闻列表获取成功');
+    }
   } catch (error) {
     console.error('获取新闻列表失败：', error);
     sendError(res, '新闻列表获取失败');

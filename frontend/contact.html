@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>联系我们 - 智维互联科技有限公司</title>
+  <meta name="description" content="联系智维互联科技有限公司：地址、电话、邮箱及在线咨询。">
+  <meta name="keywords" content="智维互联,联系方式,在线咨询">
+  <meta property="og:title" content="联系我们 - 智维互联科技有限公司">
+  <meta property="og:description" content="联系智维互联，获取专业数字化解决方案">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="./assets/css/base.css">
   <link rel="stylesheet" href="./assets/css/common.css">
@@ -21,7 +26,7 @@
         <li class="nav-item"><a href="news.html">新闻动态</a></li>
         <li class="nav-item"><a href="contact.html" class="active">联系我们</a></li>
       </ul>
-      <div class="hamburger">
+      <div class="hamburger" role="button" aria-label="菜单" aria-expanded="false">
         <i class="fas fa-bars"></i>
       </div>
     </div>
@@ -48,30 +53,30 @@
               <i class="fas fa-phone" style="color: var(--primary-color);"></i>
               <div class="info-text">
                 <h4>联系电话</h4>
-                <p id="phone">加载中...</p>
+                <p id="phone-display">加载中...</p>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-envelope" style="color: var(--primary-color);"></i>
               <div class="info-text">
                 <h4>电子邮箱</h4>
-                <p id="email">加载中...</p>
+                <p id="email-display">加载中...</p>
               </div>
             </div>
           </div>
           
           <h3 style="margin-top: 30px;">公司地图</h3>
           <div class="map-container">
-            <img id="map-img" src="https://picsum.photos/id/42/800/400" alt="公司地图" class="map-image">
+            <img id="map-img" src="assets/images/contact_info/地址.jpg" alt="公司地图" class="map-image">
           </div>
           
           <div class="social-links">
-            <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-icon" aria-label="微信"><i class="fab fa-weixin"></i></a>
+            <a href="#" class="social-icon" aria-label="微博"><i class="fab fa-weibo"></i></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
           </div>
         </div>
-        
+
         <!-- 联系表单 -->
         <div class="contact-form-card">
           <h3>发送消息</h3>
@@ -149,9 +154,9 @@
           <p><i class="fas fa-envelope"></i> 3134825482@qq.com </p>
         </div>
         <div class="social-links">
-          <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="social-icon" aria-label="微信"><i class="fab fa-weixin"></i></a>
+          <a href="#" class="social-icon" aria-label="微博"><i class="fab fa-weibo"></i></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </div>
@@ -187,11 +192,11 @@
           const info = res.data;
           // 渲染联系信息
           document.getElementById('address').textContent = info.address || '暂无地址信息';
-          document.getElementById('phone').textContent = info.phone || '暂无电话信息';
-          document.getElementById('email').textContent = info.email || '暂无邮箱信息';
+          document.getElementById('phone-display').textContent = info.phone || '暂无电话信息';
+          document.getElementById('email-display').textContent = info.email || '暂无邮箱信息';
           // 渲染地图
           const mapImg = document.getElementById('map-img');
-          mapImg.src = info.map_url || 'https://picsum.photos/id/42/800/400';
+          mapImg.src = info.map_url || 'assets/images/contact_info/地址.jpg';
           mapImg.alt = '公司位置地图';
         } else {
           console.error('加载联系信息失败:', res.msg);

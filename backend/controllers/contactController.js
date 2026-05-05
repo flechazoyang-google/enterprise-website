@@ -17,7 +17,8 @@ exports.submitMessage = async (req, res) => {
     const { name, phone, email, message } = req.body;
 
     if (!isRequired(name)) return sendError(res, '姓名不能为空', 400);
-    if (name.length > 50) return sendError(res, '姓名不能超过50个字符', 400);
+    if (name.length < 2) return sendError(res, '姓名至少2个字符', 400);
+    if (name.length > 20) return sendError(res, '姓名不能超过20个字符', 400);
     if (!isRequired(phone) || !isPhoneValid(phone)) return sendError(res, '手机号格式不合法', 400);
     if (phone.length > 20) return sendError(res, '手机号不能超过20个字符', 400);
     if (!isRequired(email) || !isEmailValid(email)) return sendError(res, '邮箱格式不合法', 400);

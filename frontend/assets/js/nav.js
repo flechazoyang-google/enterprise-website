@@ -32,6 +32,8 @@ function hamburgerMenu() {
   
   hamburger.addEventListener('click', () => {
     navList.classList.toggle('show');
+    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !expanded);
   });
   
   // 点击导航项关闭菜单（移动端）

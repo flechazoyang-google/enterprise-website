@@ -33,10 +33,10 @@ function renderCarouselItems() {
     const carouselItem = document.createElement('div');
     carouselItem.className = 'carousel-item';
     carouselItem.innerHTML = `
-      <img src="${item.img_url}" alt="${item.title}" loading="lazy">
+      <img src="${escapeHtml(item.img_url)}" alt="${escapeHtml(item.title)}" loading="lazy">
       <div class="carousel-desc">
-        <h3>${item.title}</h3>
-        <p>${item.desc}</p>
+        <h3>${escapeHtml(item.title)}</h3>
+        <p>${escapeHtml(item.desc)}</p>
       </div>
     `;
     wrapper.appendChild(carouselItem);

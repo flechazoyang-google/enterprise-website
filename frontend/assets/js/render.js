@@ -6,7 +6,7 @@ async function renderCompanyIntro() {
       const intro = res.data.intro;
       introContent.innerHTML = `
         <div class="intro-text">
-          <p>${intro}</p>
+          <p>${escapeHtml(intro)}</p>
           <a href="about.html" class="btn">了解更多</a>
         </div>
         <div class="intro-img">
@@ -34,8 +34,8 @@ async function renderAdvantages() {
             <div class="advantage-icon">
               <i class="fas ${item.icon}" style="font-size: 2.5rem; color: var(--primary-color);"></i>
             </div>
-            <h3 class="advantage-title">${item.title}</h3>
-            <p class="advantage-desc">${item.desc}</p>
+            <h3 class="advantage-title">${escapeHtml(item.title)}</h3>
+            <p class="advantage-desc">${escapeHtml(item.desc)}</p>
           </div>
         `;
       });
@@ -63,8 +63,8 @@ async function renderHotProducts() {
               <img src="${item.img_url}" alt="${item.name}" loading="lazy">
             </div>
             <div class="product-info">
-              <h3 class="product-name"><a href="product-detail.html?id=${item.id}">${item.name}</a></h3>
-              <p class="product-desc">${item.desc}</p>
+              <h3 class="product-name"><a href="product-detail.html?id=${item.id}">${escapeHtml(item.name)}</a></h3>
+              <p class="product-desc">${escapeHtml(item.desc)}</p>
               <a href="product-detail.html?id=${item.id}" class="btn btn-outline">查看详情</a>
             </div>
           </div>
@@ -93,8 +93,8 @@ async function renderCustomerCases() {
               <img src="${item.img_url}" alt="${item.name}" loading="lazy">
             </div>
             <div class="case-info">
-              <h3 class="case-name">${item.name}</h3>
-              <p class="case-desc">${item.desc}</p>
+              <h3 class="case-name">${escapeHtml(item.name)}</h3>
+              <p class="case-desc">${escapeHtml(item.desc)}</p>
             </div>
           </div>
         `;
