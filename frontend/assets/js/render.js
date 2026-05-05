@@ -1,6 +1,3 @@
-/**
- * 渲染企业简介
- */
 async function renderCompanyIntro() {
   const introContent = document.querySelector('.intro-content');
   try {
@@ -24,9 +21,6 @@ async function renderCompanyIntro() {
   }
 }
 
-/**
- * 渲染核心优势
- */
 async function renderAdvantages() {
   const advantagesList = document.querySelector('.advantages-list');
   try {
@@ -46,8 +40,6 @@ async function renderAdvantages() {
         `;
       });
       advantagesList.innerHTML = html;
-      
-      // 添加入场动画
       scrollAnimation('.advantage-item', 'animate');
     } else {
       advantagesList.innerHTML = `<p class="error">核心优势加载失败：${res.msg}</p>`;
@@ -57,15 +49,12 @@ async function renderAdvantages() {
   }
 }
 
-/**
- * 渲染热门产品（取前4个）
- */
 async function renderHotProducts() {
   const productsList = document.querySelector('.products-list');
   try {
     const res = await request('/products');
     if (res.code === 200) {
-      const hotProducts = res.data.slice(0, 4); // 取前4个热门产品
+      const hotProducts = res.data.slice(0, 4);
       let html = '';
       hotProducts.forEach(item => {
         html += `
@@ -82,20 +71,6 @@ async function renderHotProducts() {
         `;
       });
       productsList.innerHTML = html;
-      
-      // 产品卡片悬浮动画
-      const productItems = document.querySelectorAll('.product-item');
-      productItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-          item.style.transform = 'translateY(-5px)';
-          item.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-          item.style.transition = 'var(--transition)';
-        });
-        item.addEventListener('mouseleave', () => {
-          item.style.transform = 'translateY(0)';
-          item.style.boxShadow = 'var(--shadow)';
-        });
-      });
     } else {
       productsList.innerHTML = `<p class="error">产品加载失败：${res.msg}</p>`;
     }
@@ -104,9 +79,6 @@ async function renderHotProducts() {
   }
 }
 
-/**
- * 渲染客户案例
- */
 async function renderCustomerCases() {
   const casesList = document.querySelector('.cases-list');
   try {
@@ -128,20 +100,6 @@ async function renderCustomerCases() {
         `;
       });
       casesList.innerHTML = html;
-      
-      // 案例卡片悬浮动画
-      const caseItems = document.querySelectorAll('.case-item');
-      caseItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-          item.style.transform = 'translateY(-5px)';
-          item.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-          item.style.transition = 'var(--transition)';
-        });
-        item.addEventListener('mouseleave', () => {
-          item.style.transform = 'translateY(0)';
-          item.style.boxShadow = 'var(--shadow)';
-        });
-      });
     } else {
       casesList.innerHTML = `<p class="error">客户案例加载失败：${res.msg}</p>`;
     }
@@ -149,4 +107,3 @@ async function renderCustomerCases() {
     casesList.innerHTML = `<p class="error">客户案例加载失败，请刷新重试</p>`;
   }
 }
-

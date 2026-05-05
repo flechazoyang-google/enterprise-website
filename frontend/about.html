@@ -141,29 +141,7 @@
       scrollAnimation('.timeline-item', 'animate');
       scrollAnimation('.team-card', 'animate');
       
-      // 初始化回到顶部按钮
-      initBackToTop();
     });
-
-    // 初始化回到顶部功能
-    function initBackToTop() {
-      const backToTop = document.querySelector('.back-to-top');
-      
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-          backToTop.classList.add('show');
-        } else {
-          backToTop.classList.remove('show');
-        }
-      });
-      
-      backToTop.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    }
 
     /**
      * 渲染企业简介
@@ -303,25 +281,6 @@
       }
     }
 
-    /**
-     * 滚动动画
-     */
-    function scrollAnimation(selector, className) {
-      const elements = document.querySelectorAll(selector);
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(className);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      elements.forEach(element => {
-        observer.observe(element);
-      });
-    }
   </script>
 </body>
 </html>

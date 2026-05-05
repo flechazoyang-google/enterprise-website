@@ -208,6 +208,11 @@
   transition: var(--transition);
 }
 
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
 .product-img {
   height: 200px;
   overflow: hidden;
@@ -263,6 +268,11 @@
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition);
+}
+
+.case-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .case-img {

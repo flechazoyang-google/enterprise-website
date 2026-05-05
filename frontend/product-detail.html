@@ -102,25 +102,19 @@
       await renderProductDetail();
     });
 
-    /**
-     * 渲染产品详情
-     */
     async function renderProductDetail() {
       const detailContent = document.querySelector('.detail-content');
-      const productId = getUrlParam('id'); // 获取URL中的产品ID
+      const productId = getUrlParam('id');
 
-      // 验证ID合法性
       if (!productId || isNaN(productId)) {
         detailContent.innerHTML = `<p class="error">产品ID不合法，请返回产品列表页</p>`;
         return;
       }
 
       try {
-        // 调用后端接口获取产品详情
         const res = await request(`/products/${productId}`);
         if (res.code === 200) {
           const product = res.data;
-          // 渲染详情HTML
           detailContent.innerHTML = `
             <div class="detail-header">
               <h1 class="product-title">${product.name}</h1>
@@ -135,7 +129,7 @@
                 <p class="product-brief">${product.desc}</p>
                 <h3>产品详情</h3>
                 <div class="product-full-detail">
-                  ${formatDetailContent(product.detail)} <!-- 格式化详情内容（换行） -->
+                  ${formatDetailContent(product.detail)}
                 </div>
                 <a href="contact.html" class="btn">咨询合作</a>
               </div>
@@ -149,13 +143,6 @@
       } catch (error) {
         detailContent.innerHTML = `<p class="error">产品详情加载失败，请刷新重试</p>`;
       }
-    }
-
-    /**
-     * 格式化详情内容（将换行符转为<br>）
-     */
-    function formatDetailContent(content) {
-      return content.replace(/\n/g, '<br>');
     }
   </script>
 </body>

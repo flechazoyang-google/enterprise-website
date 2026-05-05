@@ -109,28 +109,21 @@
       await renderNewsDetail();
     });
 
-    /**
-     * 渲染新闻详情
-     */
     async function renderNewsDetail() {
       const detailContent = document.querySelector('.detail-content');
-      const newsId = getUrlParam('id'); // 获取URL中的新闻ID
+      const newsId = getUrlParam('id');
 
-      // 验证ID合法性
       if (!newsId || isNaN(newsId)) {
         detailContent.innerHTML = `<p class="error">新闻ID不合法，请返回新闻列表页</p>`;
         return;
       }
 
       try {
-        // 调用后端接口获取新闻详情
         const res = await request(`/news/${newsId}`);
         if (res.code === 200) {
           const news = res.data;
-          // 格式化日期（YYYY-MM-DD → YYYY年MM月DD日）
           const formatDate = news.date.replace(/-/g, '年') + '日';
-          
-          // 渲染详情HTML
+
           detailContent.innerHTML = `
             <div class="detail-header">
               <h1 class="news-title">${news.title}</h1>
@@ -140,9 +133,8 @@
               </div>
             </div>
             <div class="news-content">
-              ${formatDetailContent(news.content)} <!-- 格式化详情内容（换行） -->
+              ${formatDetailContent(news.content)}
             </div>
-            <!-- 新闻配图（示例） -->
             <div class="news-img">
               <img src="https://picsum.photos/id/${newsId * 10}/1200/600" alt="${news.title}" loading="lazy">
             </div>
@@ -155,15 +147,6 @@
       } catch (error) {
         detailContent.innerHTML = `<p class="error">新闻详情加载失败，请刷新重试</p>`;
       }
-    }
-
-    /**
-     * 格式化详情内容（将换行符转为<br>，支持段落分隔）
-     */
-    function formatDetailContent(content) {
-      return content.split('\n').map(paragraph => {
-        return paragraph.trim() ? `<p>${paragraph}</p>` : '';
-      }).join('');
     }
   </script>
 </body>

@@ -78,7 +78,7 @@
           <form id="contact-form" class="contact-form">
             <div class="form-group">
               <label for="name">姓名</label>
-              <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+              <input type="text" id="name" name="name" required placeholder="请输入您的姓名（2-20个字符）">
             </div>
             <div class="form-group">
               <label for="phone">电话</label>
@@ -90,7 +90,7 @@
             </div>
             <div class="form-group">
               <label for="subject">主题</label>
-              <select id="subject" name="subject" required>
+              <select id="subject" name="subject">
                 <option value="">请选择咨询主题</option>
                 <option value="product">产品咨询</option>
                 <option value="cooperation">合作洽谈</option>
@@ -100,7 +100,7 @@
             </div>
             <div class="form-group">
               <label for="message">留言内容</label>
-              <textarea id="message" name="message" rows="5" required placeholder="请输入您的留言内容"></textarea>
+              <textarea id="message" name="message" rows="5" required placeholder="请输入您的留言内容（10-500个字符）"></textarea>
             </div>
             <div class="form-submit">
               <button type="submit" class="btn">发送消息</button>
@@ -174,33 +174,8 @@
     document.addEventListener('DOMContentLoaded', async () => {
       // 加载联系信息
       await loadContactInfo();
-      // 绑定表单事件
       bindContactFormEvents();
-      // 初始化回到顶部按钮
-      initBackToTop();
     });
-
-    /**
-     * 初始化回到顶部功能
-     */
-    function initBackToTop() {
-      const backToTop = document.querySelector('.back-to-top');
-      
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-          backToTop.classList.add('show');
-        } else {
-          backToTop.classList.remove('show');
-        }
-      });
-      
-      backToTop.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    }
 
     /**
      * 加载企业联系信息

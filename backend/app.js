@@ -1,8 +1,9 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const { testDbConnection } = require('./config/db');
+const { sendError } = require('./utils/response');
 
-// 导入路由
 const carouselRouter = require('./routes/carouselRouter');
 const companyRouter = require('./routes/companyRouter');
 const advantageRouter = require('./routes/advantageRouter');
@@ -13,14 +14,14 @@ const teamRouter = require('./routes/teamRouter');
 const newsRouter = require('./routes/newsRouter');
 const contactRouter = require('./routes/contactRouter');
 
-// 创建Express实例
 const app = express();
 const port = process.env.PORT || 3000;
 
 // 中间件
-app.use(cors()); // 解决跨域
-app.use(express.json()); // 解析JSON请求体
-app.use(express.urlencoded({ extended: true })); // 解析表单请求体
+const allowedOrigin = process.env.CORS_ORIGIN || 'http://localhost:3000';
+app.use(cors({ origin: allowedOrigin }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // 挂载路由
 app.use('/api', carouselRouter);
@@ -38,9 +39,22 @@ app.get('/api/test', (req, res) => {
   res.json({ code: 200, msg: '后端服务正常运行', data: {} });
 });
 
+// 前端静态文件
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// 404处理
+app.use((req, res) => {
+  sendError(res, '接口不存在', 404);
+});
+
+// 全局错误处理
+app.use((err, req, res, next) => {
+  console.error('服务器错误：', err);
+  sendError(res, '服务器内部错误', 500);
+});
+
 // 启动服务器
 app.listen(port, () => {
   console.log(`后端服务启动成功，端口：${port}`);
-  // 测试数据库连接
   testDbConnection();
 });
